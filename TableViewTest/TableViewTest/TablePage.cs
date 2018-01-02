@@ -8,7 +8,7 @@ namespace TableViewTest
     {
         public TablePage()
         {
-            var table1 = new PageTableView
+            Table1 = new PageTableView
             {
                 BackgroundColor = Color.Cyan,
                 Root = new TableRoot
@@ -29,7 +29,7 @@ namespace TableViewTest
                 BackgroundColor = Color.Yellow
             };
 
-            var table2 = new PageTableView
+            Table2 = new PageTableView
             {
                 BackgroundColor = Color.Red,
                 Root = new TableRoot
@@ -50,9 +50,9 @@ namespace TableViewTest
                 BackgroundColor = Color.Green
             };
 
-            var stackLayout = new StackLayout
+            StackLayout = new StackLayout
             {
-                Children = { table1, label1, table2, label2 },
+                Children = { Table1, label1, Table2, label2 },
                 Spacing = 0
             };
 
@@ -60,8 +60,24 @@ namespace TableViewTest
             Title = "Custom Table View";
             Content = new ScrollView
             {
-                Content = stackLayout
+                Content = StackLayout
             };
+        }
+
+        public PageTableView Table1 { get; set; }
+        public PageTableView Table2 { get; set; }
+        public StackLayout StackLayout { get; set; }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // This will also fix the problem, but you see a flash of the old layout
+            // when the page first displays.
+
+            //var l = new Label();
+            //StackLayout.Children.Add(l);
+            //StackLayout.Children.Remove(l);
         }
     }
 
