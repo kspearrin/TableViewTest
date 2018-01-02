@@ -50,7 +50,7 @@ namespace TableViewTest
                 BackgroundColor = Color.Green
             };
 
-            StackLayout = new StackLayout
+            StackLayout = new CustomStackLayout
             {
                 Children = { Table1, label1, Table2, label2 },
                 Spacing = 0
@@ -66,7 +66,7 @@ namespace TableViewTest
 
         public PageTableView Table1 { get; set; }
         public PageTableView Table2 { get; set; }
-        public StackLayout StackLayout { get; set; }
+        public CustomStackLayout StackLayout { get; set; }
 
         protected override void OnAppearing()
         {
@@ -75,9 +75,7 @@ namespace TableViewTest
             // This will also fix the problem, but you see a flash of the old layout
             // when the page first displays.
 
-            //var l = new Label();
-            //StackLayout.Children.Add(l);
-            //StackLayout.Children.Remove(l);
+            //StackLayout.RedrawLayout();
         }
     }
 
@@ -137,6 +135,14 @@ namespace TableViewTest
                 BackgroundColor = Color.White,
                 Padding = 10
             };
+        }
+    }
+
+    public class CustomStackLayout : StackLayout
+    {
+        public void RedrawLayout()
+        {
+            InvalidateLayout();
         }
     }
 }
