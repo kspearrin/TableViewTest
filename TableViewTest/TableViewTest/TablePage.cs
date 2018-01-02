@@ -86,8 +86,8 @@ namespace TableViewTest
         {
             if(!VerticalOptions.Expands)
             {
-                var baseBaseOnSizeRequest = GetVisualElementOnSizeRequest();
-                return baseBaseOnSizeRequest(widthConstraint, heightConstraint);
+                var baseOnSizeRequest = GetVisualElementOnSizeRequest();
+                return baseOnSizeRequest(widthConstraint, heightConstraint);
             }
 
             return base.OnSizeRequest(widthConstraint, heightConstraint);
